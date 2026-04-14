@@ -3,14 +3,22 @@ import React from "react";
 import { ThemeProvider as SCP, createGlobalStyle } from "styled-components";
 
 export const theme = {
-  black: "#151415", blackRgb: "21,20,21",
-  cream: "#F1EADE", creamRgb: "241,234,222",
-  brown: "#7B5136", brownRgb: "123,81,54",
-  gold: "#C9A96E", goldRgb: "201,169,110",
-  stone: "#242324", stoneRgb: "36,35,36",
-  grey: "#3F383C", greyRgb: "63,56,60",
-  white: "#FFFFFF", whiteRgb: "255,255,255",
-  stroke: "#9FAF9B", strokeRgb: "159,175,155",
+  black: "#151415",
+  blackRgb: "21,20,21",
+  cream: "#F1EADE",
+  creamRgb: "241,234,222",
+  brown: "#7B5136",
+  brownRgb: "123,81,54",
+  gold: "#C9A96E",
+  goldRgb: "201,169,110",
+  stone: "#242324",
+  stoneRgb: "36,35,36",
+  grey: "#3F383C",
+  greyRgb: "63,56,60",
+  white: "#FFFFFF",
+  whiteRgb: "255,255,255",
+  stroke: "#9FAF9B",
+  strokeRgb: "159,175,155",
   /* Obsidian's exact cubic-bezier curves */
   cubic: "cubic-bezier(0.35,0.35,0,1)",
   cubicIn: "cubic-bezier(0.69,0,0,1)",
@@ -47,17 +55,17 @@ const G = createGlobalStyle<{ theme: Theme }>`
     --g-columns: 12;
     --g-gap: var(--p);
     --g-margin: calc(var(--g-gap) * 2);
-    --c-black: ${p => p.theme.black};
-    --c-black-rgb: ${p => p.theme.blackRgb};
-    --c-cream: ${p => p.theme.cream};
-    --c-cream-rgb: ${p => p.theme.creamRgb};
-    --c-brown: ${p => p.theme.brown};
-    --c-brown-rgb: ${p => p.theme.brownRgb};
-    --c-gold: ${p => p.theme.gold};
-    --c-stroke: ${p => p.theme.stroke};
-    --f-cubic: ${p => p.theme.cubic};
-    --f-cubicIn: ${p => p.theme.cubicIn};
-    --f-fast: ${p => p.theme.fast};
+    --c-black: ${(p) => p.theme.black};
+    --c-black-rgb: ${(p) => p.theme.blackRgb};
+    --c-cream: ${(p) => p.theme.cream};
+    --c-cream-rgb: ${(p) => p.theme.creamRgb};
+    --c-brown: ${(p) => p.theme.brown};
+    --c-brown-rgb: ${(p) => p.theme.brownRgb};
+    --c-gold: ${(p) => p.theme.gold};
+    --c-stroke: ${(p) => p.theme.stroke};
+    --f-cubic: ${(p) => p.theme.cubic};
+    --f-cubicIn: ${(p) => p.theme.cubicIn};
+    --f-fast: ${(p) => p.theme.fast};
     @media (max-width: 1024px) { --g-columns: 6; --g-margin: var(--g-gap); --large: var(--h1); }
   }
 
@@ -76,14 +84,15 @@ const G = createGlobalStyle<{ theme: Theme }>`
   body {
     background: var(--c-black);
     color: var(--c-cream);
-    font-family: ${p => p.theme.fontB};
+    font-family: ${(p) => p.theme.fontB};
     font-weight: 400;
     line-height: 1.3;
     overflow-x: hidden;
   }
 
   ::-webkit-scrollbar { width: 2px; }
-  ::-webkit-scrollbar-thumb { background: rgba(${p => p.theme.goldRgb}, 0.2); }
+  ::-webkit-scrollbar-thumb { background: rgba(${(p) =>
+    p.theme.goldRgb}, 0.2); }
   img { display: block; max-width: 100%; }
   a { color: inherit; text-decoration: none; }
   button { background: transparent; border: none; cursor: pointer; font-family: inherit; color: inherit; }
@@ -103,11 +112,20 @@ const G = createGlobalStyle<{ theme: Theme }>`
   }
 
   /* ═══ TYPOGRAPHY ═══ */
-  .t-large { font-family: ${p => p.theme.fontT2}; font-size: var(--large); line-height: 0.85; font-weight: 300; font-style: italic; }
-  .t-h0 { font-family: ${p => p.theme.fontT1}; font-size: var(--h1); line-height: 0.9; font-weight: 300; }
-  .t-h1 { font-family: ${p => p.theme.fontT1}; font-size: var(--h2); line-height: 0.95; font-weight: 300; }
-  .t-h2 { font-family: ${p => p.theme.fontT1}; font-size: var(--h3); line-height: 1.05; font-weight: 300; }
-  .t-h3 { font-family: ${p => p.theme.fontT1}; font-size: var(--h4); line-height: 1.15; font-weight: 300; }
+  .t-large { font-family: ${(p) =>
+    p.theme
+      .fontT2}; font-size: var(--large); line-height: 0.85; font-weight: 300; font-style: italic; }
+  .t-h0 { font-family: ${(p) =>
+    p.theme.fontT1}; font-size: var(--h1); line-height: 0.9; font-weight: 300; }
+  .t-h1 { font-family: ${(p) =>
+    p.theme
+      .fontT1}; font-size: var(--h2); line-height: 0.95; font-weight: 300; }
+  .t-h2 { font-family: ${(p) =>
+    p.theme
+      .fontT1}; font-size: var(--h3); line-height: 1.05; font-weight: 300; }
+  .t-h3 { font-family: ${(p) =>
+    p.theme
+      .fontT1}; font-size: var(--h4); line-height: 1.15; font-weight: 300; }
   .t-p { font-size: var(--p); line-height: 1.5; }
   .t-m { font-size: var(--m); line-height: 1.5; }
   .t-mm { font-size: var(--mm); line-height: 1.5; letter-spacing: 0.15em; text-transform: uppercase; }
@@ -163,7 +181,7 @@ const G = createGlobalStyle<{ theme: Theme }>`
     align-items: center;
     justify-content: center;
     padding: 0.7em 1.8em;
-    border: 1px solid rgba(${p => p.theme.creamRgb}, 0.15);
+    border: 1px solid rgba(${(p) => p.theme.creamRgb}, 0.15);
     border-radius: 0.3rem;
     font-size: var(--mm);
     letter-spacing: 0.2em;
@@ -174,14 +192,14 @@ const G = createGlobalStyle<{ theme: Theme }>`
     width: 100%;
     text-align: center;
     &:hover {
-      background: rgba(${p => p.theme.creamRgb}, 0.06);
-      border-color: rgba(${p => p.theme.creamRgb}, 0.3);
+      background: rgba(${(p) => p.theme.creamRgb}, 0.06);
+      border-color: rgba(${(p) => p.theme.creamRgb}, 0.3);
     }
     &.-big { padding: 1em 2em; }
-    &.-reverse { border-color: rgba(${p => p.theme.creamRgb}, 0.08); }
+    &.-reverse { border-color: rgba(${(p) => p.theme.creamRgb}, 0.08); }
   }
   .button.-dark {
-    border-color: rgba(${p => p.theme.blackRgb}, 0.15);
+    border-color: rgba(${(p) => p.theme.blackRgb}, 0.15);
     color: var(--c-black);
     &:hover {
       background: var(--c-black);
@@ -198,10 +216,14 @@ const G = createGlobalStyle<{ theme: Theme }>`
   .-fit img { height: 100%; object-fit: cover; position: absolute; width: 100%; }
 `;
 
-export default function ThemeProvider({ children }: { children: React.ReactNode }) {
+export default function ThemeProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <SCP theme={theme}>
-      <G />
+      <G theme={theme} />
       {children}
     </SCP>
   );

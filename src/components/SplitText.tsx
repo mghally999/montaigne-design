@@ -1,10 +1,18 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, createElement } from "react";
 import { useInView } from "@/hooks/useStringEngine";
 
-interface Props { children: string; className?: string; as?: keyof JSX.IntrinsicElements; }
+interface Props {
+  children: string;
+  className?: string;
+  as?: keyof JSX.IntrinsicElements;
+}
 
-export default function SplitText({ children, className = "", as: Tag = "span" }: Props) {
+export default function SplitText({
+  children,
+  className = "",
+  as: Tag = "span",
+}: Props) {
   const ref = useRef<HTMLElement>(null);
   useInView(ref, { threshold: 0.15 });
 
@@ -48,5 +56,10 @@ export default function SplitText({ children, className = "", as: Tag = "span" }
     el.appendChild(lineEl);
   }, [children]);
 
-  return <Tag ref={ref as any} className={className} aria-hidden="true" />;
+  // Use createElement to avoid ref type issues with dynamic tag names
+  return createElement(Tag, {
+    ref: ref as any,
+    className,
+    "aria-hidden": "true",
+  });
 }

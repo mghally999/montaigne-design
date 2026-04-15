@@ -1,9 +1,15 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CursorTrail() {
   const ref = useRef(null);
+  const [isTouch, setIsTouch] = useState(false);
+
   useEffect(() => {
+    if ("ontouchstart" in window || navigator.maxTouchPoints > 0) {
+      setIsTouch(true);
+      return;
+    }
     const cv = ref.current; if (!cv) return;
     const ctx = cv.getContext("2d"); if (!ctx) return;
     let w, h;
@@ -25,6 +31,8 @@ export default function CursorTrail() {
     };
     raf = requestAnimationFrame(loop);
     return () => { cancelAnimationFrame(raf); removeEventListener("pointermove", onM); removeEventListener("resize", resize); };
-  }, []);
+  }, [isTouch]);
+
+  if (isTouch) return null;
   return <canvas ref={ref} style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 9999 }} />;
 }

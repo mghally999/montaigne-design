@@ -11,33 +11,46 @@ const Header = styled.header`
     ${p => p.theme.mode === "dark" ? "rgba(21,20,21,0.3)" : "rgba(241,234,222,0.4)"} 50%, 
     transparent 100%);
   transition: all 0.9s var(--ease);
+  @media(max-width:768px) { padding: 12px 16px 50px; }
 `;
 const Inner = styled.div`display: flex; align-items: center; justify-content: space-between; pointer-events: auto;`;
-const Logo = styled(Link)`display: flex; align-items: center; gap: 14px; text-decoration: none;
-  img { height: 38px; width: auto; opacity: 0.85; }
+const Logo = styled(Link)`display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0;
+  img { height: 36px; width: auto; opacity: 0.85; border-radius: 4px; }
+  @media(max-width:480px) { img { height: 30px; } }
 `;
-const LogoText = styled.div`display: flex; flex-direction: column; font-size: 18px; line-height: 0.9; font-weight: 400; letter-spacing: 0.02em;`;
-const LogoSub = styled.span`font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.5; margin-top: 3px;`;
+const LogoText = styled.div`display: flex; flex-direction: column; font-size: 18px; line-height: 0.9; font-weight: 400; letter-spacing: 0.02em;
+  @media(max-width:640px) { font-size: 15px; }
+`;
+const LogoSub = styled.span`font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; opacity: 0.5; margin-top: 3px;
+  @media(max-width:640px) { font-size: 9px; }
+`;
 const NavBtn = styled(Link)`
   padding: 10px 28px; border: 1px solid ${p => p.theme.navBorder}; border-radius: 4px;
   font-size: 12px; letter-spacing: 0.18em; font-weight: 400;
-  color: ${p => p.theme.navText}; text-decoration: none;
+  color: ${p => p.theme.navText}; text-decoration: none; white-space: nowrap;
   transition: all 0.5s var(--ease);
-  &:hover { border-color: ${p => p.theme.navTextHover}; color: ${p => p.theme.navTextHover}; 
+  &:hover { border-color: ${p => p.theme.navTextHover}; color: ${p => p.theme.navTextHover};
     background: ${p => p.theme.mode === "dark" ? "rgba(241,234,222,0.06)" : "rgba(21,20,21,0.04)"}; }
+  @media(max-width:768px) { display: none; }
 `;
 const MenuBtn = styled.button`
-  padding: 10px 28px; border: 1px solid ${p => p.theme.navBorder}; border-radius: 4px;
-  display: flex; align-items: center; gap: 12px; font-size: 12px; letter-spacing: 0.18em;
+  padding: 10px 20px; border: 1px solid ${p => p.theme.navBorder}; border-radius: 4px;
+  display: flex; align-items: center; gap: 10px; font-size: 12px; letter-spacing: 0.18em;
   color: ${p => p.theme.navText}; font-weight: 400;
   transition: all 0.5s; &:hover { border-color: ${p => p.theme.navTextHover}; color: ${p => p.theme.navTextHover}; }
+  @media(max-width:480px) { padding: 8px 14px; font-size: 11px; gap: 8px; }
 `;
-const BtnRow = styled.div`display: flex; gap: 10px; align-items: center;`;
-const Sep = styled.div`width: 1px; height: 28px; background: ${p => p.theme.border}; margin: 0 6px;`;
+const BtnRow = styled.div`display: flex; gap: 10px; align-items: center;
+  @media(max-width:768px) { gap: 6px; }
+`;
+const Sep = styled.div`width: 1px; height: 28px; background: ${p => p.theme.border}; margin: 0 6px;
+  @media(max-width:768px) { display: none; }
+`;
 const ThemeBtn = styled.button`
-  padding: 8px 14px; font-size: 11px; letter-spacing: 0.15em; 
+  padding: 8px 14px; font-size: 11px; letter-spacing: 0.15em;
   color: ${p => p.theme.navText}; border: 1px solid ${p => p.theme.border}; border-radius: 4px;
   transition: all 0.4s; &:hover { color: ${p => p.theme.navTextHover}; border-color: ${p => p.theme.navBorder}; }
+  @media(max-width:480px) { padding: 6px 10px; font-size: 10px; }
 `;
 
 export default function Nav({ onOpenMenu, onToggleTheme, isDark }) {
@@ -51,7 +64,7 @@ export default function Nav({ onOpenMenu, onToggleTheme, isDark }) {
     <Header $scrolled={scrolled}>
       <Inner>
         <Logo href="/">
-          <img src="/logo.jpg" alt="Montaigne Design" style={{ borderRadius: 4 }} />
+          <img src="/logo.jpg" alt="Montaigne Design" />
           <LogoText>
             <span>Montaigne</span>
             <LogoSub>Design</LogoSub>
